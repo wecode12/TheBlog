@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+
+        <article class="media content-section" style="margin-top:100px;">
+
+               <img src="{{ post.user.avatar(60) }}">
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <a class="mr-2" href="#">Writer : <b><em>{{ post.user.username }}</em></b></a>
+                    <small class="text-muted" style="font-size: 14px;"> Posted: {{moment(post.published).fromNow()}}</small>
+                    {% if post.user == current_user %}
+                      <div>
+                          <div class="row">
+                              <div class="col-md-1"> <a class="btn btn-info btn-lg mt-1 mb-1" href="/pitch/{{post.id}}/update">Update</a></div>
+                              <div class="col-md-1"><form action="/pitch/{{post.id}}/delete" method="POST">
+                                <input class="btn btn-danger btn-lg m-x-10" type="submit" value="Delete">
+            </div>
+                               
+                        
+                                
+                          </div>
+                           
+                
+                      </div>
+                    {% endif %}
+                  </div>
+                  <table>
+                    <tr>
+                      <td>
+                         <a href="/"><i class="fas fa-chevron-left" style="font-size:40px;margin-right:80px;"></i></i></a>
+
+                      </td>
+                      <hr>
+                      <td>
+                        <h1 class="article-title text-center" style="margin-left:auto;">{{ post.title }}</h1>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- <i class="fas fa-chevron-left"></i>
+                  <h1 class="article-title text-center">{{ post.title }}</h1> -->
+                  <hr>
+                  <p class="article-content" style="line-height:40px;font-size: 18px;">{{ post.body }}</p>
+                  <div>
+                        <a href="/pitch/{{post.id}}" style=""><h4>Add Comment | View Comments</h4></a>
+                  </div>
+                </div>
+              </article>
+
+</div>
+ 
+{% endblock %}

@@ -1,0 +1,51 @@
+
+
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+<section id="home"  style="margin-top:100px; font-size:18px;"> 
+
+<div class="container">
+    {% for post in posts%}
+
+
+    <article class="media content-section">
+       
+      <table>
+        <tr>
+          <td>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3AeEIETd1WF-w7g5xkFdUfvcX0FK7tH5gV7qiidS1iW4hJFAzzw" style="height:80px;width:80px;">
+          </td>
+          <td style="padding-left:10px;">
+              <a class="mr-2" href="#">Writer : <b><em>{{ post.user.username }}</em></b></a> <br>
+              <small class="text-muted">Posted: {{moment(post.published).fromNow()}}</small>
+          </td>
+        </tr>
+      </table>
+        
+        <div class="media-body">
+          <div class="article-metadata">
+           
+          </div>
+          <h2><a class="article-title" href="/pitch/{{post.id}}/full">{{ post.title }}</a></h2>
+          
+          <p class="article-content">{{ post.body | truncate(360) }} <a href="/pitch/{{post.id}}/full"> ...Full Post</a> </p>
+        </div>
+        <hr>
+      </article>
+    
+    
+    
+    
+    {% endfor  %}
+
+</div>
+
+  
+</section>
+
+{% endblock %}
+
+

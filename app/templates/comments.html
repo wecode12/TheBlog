@@ -1,0 +1,49 @@
+
+{% import 'macros.html' as macro%}
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles%}
+            <!-- {{ super() }}
+            <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Old+Standard+TT|Roboto" rel="stylesheet">
+            <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}"> -->
+{% endblock %}
+{% block content %}
+<div class="container" style="font-family: 'Crimson Text', serif;font-size:20px;margin-top:100px;">
+<div class="row">
+<div class="col-md-2">
+    <a   class="btn btn-primary" href="/" style="margin-top:20px;"><h1>Back</h1></a>
+</div>
+<div class="col-md-6">
+
+    {{ wtf.quick_form(comments_form)}}
+</div>
+
+</div>
+
+    <div id="comments">
+        
+            <div class="card text-center">
+  <h1 class="card-header">Comments</h1>
+                {% for comment in comments_list %}
+  <div class="card-body">
+    <h3 class="card-text" style="height:60px;line-height:60px;background-color:#DCEFD9;border:2px double grey;">{{comment.the_comment}} -- by <a href="#">{{comment.user.username}}</a></h3>
+    <!-- <div class="row">
+        <div class="col-md-1"><form action="/pitch/comment/{{comment.id}}/delete" method="POST">
+          <input class="btn btn-danger btn-lg m-x-2" type="submit" value="Delete">
+</div> -->
+       
+
+  </div>
+                {%endfor%}
+</div>
+
+
+        </div>
+
+
+    </div>
+
+
+     
+
+{% endblock%}
